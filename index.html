@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EROSSARC | Let's Get Impact Together - Advanced Trading Education Platform</title>
+    <meta name="description" content="Master financial markets through education, discipline, and data-driven decisions. Founded by Jalvant Vekariya, operated by AMCC System.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+
+    <!-- Three.js & GSAP & Lenis via CDN for execution context -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+
+    <!-- Canvas Background for Three.js -->
+    <div id="canvas-container"></div>
+
+    <!-- Cursor Glow Element -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Live Market Ticker Bar -->
+    <header class="live-ticker-bar">
+        <div class="ticker-track" id="tickerTrack">
+            <!-- Dynamically populated via ticker.js -->
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav" id="stickyNav">
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                <span class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 21L21 3M21 3H12M21 3V12" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 12L12 21L21 12" stroke="var(--positive)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="logo-text">EROSSARC</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#markets" class="nav-link">Markets</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#chart-section" class="nav-link">Platform Simulator</a>
+                <a href="#volatility" class="nav-link">Volatility</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </div>
+
+            <div class="nav-badge">
+                <span class="status-dot"></span>
+                <span>Education Only</span>
+            </div>
+
+            <div class="mobile-menu-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapped for Lenis Scroll -->
+    <div id="smooth-wrapper">
+        <main id="smooth-content">
+
+            <!-- Hero Section -->
+            <section class="hero-section" id="hero">
+                <div class="hero-content">
+                    <div class="hero-pill glass-panel">
+                        <span class="pill-dot"></span>
+                        <span>Institutional-Grade Market Knowledge</span>
+                    </div>
+                    <h1 class="hero-headline">
+                        <span class="text-reveal">LEARN.</span>
+                        <span class="text-reveal accent-text">TRADE.</span>
+                        <span class="text-reveal">EVOLVE.</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Master financial markets through education, discipline, and data-driven decisions. Built for serious practitioners seeking precision.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#education" class="btn-primary glow-effect">
+                            <span>Explore Curriculum</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="#chart-section" class="btn-secondary glass-panel">
+                            <span>Launch Simulator</span>
+                        </a>
+                    </div>
+                    <div class="hero-metrics">
+                        <div class="metric-item">
+                            <span class="metric-value">100%</span>
+                            <span class="metric-label">Educational Content</span>
+                        </div>
+                        <div class="metric-divider"></div>
+                        <div class="metric-item">
+                            <span class="metric-value">0%</span>
+                            <span class="metric-label">Brokerage Bias</span>
+                        </div>
+                        <div class="metric-divider"></div>
+                        <div class="metric-item">
+                            <span class="metric-value">24/7</span>
+                            <span class="metric-label">Knowledge Access</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Erossarc Section -->
+            <section class="section about-section" id="about">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag">THE FOUNDATION</span>
+                        <h2>About EROSSARC</h2>
+                        <p>Architecting high-performance trading intelligence without conflicts of interest.</p>
+                    </div>
+                    <div class="about-grid">
+                        <div class="about-card glass-panel tilt-card">
+                            <div class="card-icon-wrapper">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <h3>Pure Education</h3>
+                            <p>EROSSARC is strictly an educational knowledge platform. We do not operate as a broker, trading platform, or financial exchange. User accounts, trading deposits, and financial investments are not supported.</p>
+                        </div>
+                        <div class="about-card glass-panel tilt-card">
+                            <div class="card-icon-wrapper">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--positive)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <h3>Institutional Standards</h3>
+                            <p>Founded by <strong>Jalvant Vekariya</strong> and operated under <strong>AMCC System</strong>, our core philosophy hinges on absolute transparency, mathematical rigor, and rigorous psychological preparedness.</p>
+                        </div>
+                        <div class="about-card glass-panel tilt-card">
+                            <div class="card-icon-wrapper">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            </div>
+                            <h3>Data-Driven Mindset</h3>
+                            <p>Markets are complex probabilistic matrices. We train your cognitive faculties to read price action, order flow, and risk distribution rather than relying on emotional intuition.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Markets Hub (Forex, Crypto, Blockchain) -->
+            <section class="section markets-hub" id="markets">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag">ASSET CLASSES & ECOSYSTEMS</span>
+                        <h2>Global Market Foundations</h2>
+                        <p>Comprehensive breakdown of liquidity pools, decentralized protocols, and traditional currency mechanics.</p>
+                    </div>
+
+                    <!-- Tabs Header -->
+                    <div class="market-tabs">
+                        <button class="tab-btn active" data-tab="forex">Forex Markets</button>
+                        <button class="tab-btn" data-tab="crypto">Cryptocurrency</button>
+                        <button class="tab-btn" data-tab="blockchain">Blockchain Architecture</button>
+                    </div>
+
+                    <!-- Tab Content: Forex -->
+                    <div class="market-tab-content active" id="forex">
+                        <div class="content-split">
+                            <div class="split-info">
+                                <h3>Foreign Exchange Mechanics</h3>
+                                <p>The decentralized global market where all the world's currencies trade. Understanding macro correlations and liquidity parameters is essential for consistent execution.</p>
+                                <ul class="feature-checklist">
+                                    <li><strong>Currency Pairs:</strong> Quoted in base and quote currency relationships (e.g., EUR/USD).</li>
+                                    <li><strong>Pips & Spreads:</strong> Percentage in point measurement and liquidity provider markup.</li>
+                                    <li><strong>Leverage & Margin:</strong> Borrowed capital efficiency metrics requiring strict oversight.</li>
+                                    <li><strong>Global Sessions:</strong> Sydney, Tokyo, London, and New York trading intervals.</li>
+                                    <li><strong>Order Types:</strong> Market, Limit, Stop-Loss, and Take-Profit execution vectors.</li>
+                                </ul>
+                            </div>
+                            <div class="split-visual glass-panel">
+                                <div class="visual-header">
+                                    <span>FX_MATRIX_CORE // V2.6</span>
+                                    <span class="status-live">ONLINE</span>
+                                </div>
+                                <div class="fx-visual-grid">
+                                    <div class="fx-box">
+                                        <span class="fx-pair">EUR/USD</span>
+                                        <span class="fx-val positive">+0.14%</span>
+                                    </div>
+                                    <div class="fx-box">
+                                        <span class="fx-pair">GBP/USD</span>
+                                        <span class="fx-val negative">-0.08%</span>
+                                    </div>
+                                    <div class="fx-box">
+                                        <span class="fx-pair">USD/JPY</span>
+                                        <span class="fx-val positive">+0.32%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content: Crypto -->
+                    <div class="market-tab-content" id="crypto">
+                        <div class="content-split">
+                            <div class="split-info">
+                                <h3>Digital Asset Ecosystems</h3>
+                                <p>Decrypted, decentralized digital currencies operating on cryptographic proof-of-work or proof-of-stake consensus systems.</p>
+                                <ul class="feature-checklist">
+                                    <li><strong>Bitcoin (BTC):</strong> The premier decentralized store of value and digital gold asset.</li>
+                                    <li><strong>Ethereum (ETH):</strong> Smart contract programmable financial infrastructure.</li>
+                                    <li><strong>Stablecoins:</strong> Fiat-pegged tokens ensuring velocity across decentralized rails.</li>
+                                    <li><strong>Wallets & Custody:</strong> Self-sovereign cold and hot storage security models.</li>
+                                    <li><strong>Exchanges & Liquidity:</strong> Centralized order books versus decentralized AMMs.</li>
+                                </ul>
+                            </div>
+                            <div class="split-visual glass-panel">
+                                <div class="visual-header">
+                                    <span>CRYPTO_LIQUIDITY_INDEX</span>
+                                    <span class="status-live">SECURE</span>
+                                </div>
+                                <div class="crypto-flow-diagram">
+                                    <div class="flow-node">Mempool</div>
+                                    <div class="flow-arrow">→</div>
+                                    <div class="flow-node highlight">Consensus</div>
+                                    <div class="flow-arrow">→</div>
+                                    <div class="flow-node">Final Block</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content: Blockchain -->
+                    <div class="market-tab-content" id="blockchain">
+                        <div class="content-split">
+                            <div class="split-info">
+                                <h3>Distributed Ledger Principles</h3>
+                                <p>A decentralized database distributed across a peer-to-peer network, ensuring tamper-proof record keeping and absolute transparency.</p>
+                                <ul class="feature-checklist">
+                                    <li><strong>Blocks & Cryptographic Hashes:</strong> Immutable data linkages securing state transitions.</li>
+                                    <li><strong>Decentralization:</strong> Elimination of single points of failure via global nodes.</li>
+                                    <li><strong>Smart Contracts:</strong> Self-executing code enforcing agreement parameters automatically.</li>
+                                </ul>
+                            </div>
+                            <div class="split-visual glass-panel svg-container">
+                                <!-- Animated SVG Blockchain Diagram -->
+                                <svg viewBox="0 0 400 200" class="blockchain-svg">
+                                    <defs>
+                                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:var(--accent);stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:var(--positive);stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <rect x="20" y="70" width="80" height="60" rx="8" fill="rgba(255,255,255,0.03)" stroke="var(--accent)" stroke-width="2"/>
+                                    <text x="60" y="105" fill="#fff" font-size="12" text-anchor="middle" font-family="IBM Plex Mono">Block #1</text>
+                                    
+                                    <line x1="100" y1="100" x2="150" y2="100" stroke="url(#grad1)" stroke-width="2" stroke-dasharray="4"/>
+                                    
+                                    <rect x="150" y="70" width="80" height="60" rx="8" fill="rgba(255,255,255,0.03)" stroke="var(--accent)" stroke-width="2"/>
+                                    <text x="190" y="105" fill="#fff" font-size="12" text-anchor="middle" font-family="IBM Plex Mono">Block #2</text>
+                                    
+                                    <line x1="230" y1="100" x2="280" y2="100" stroke="url(#grad1)" stroke-width="2" stroke-dasharray="4"/>
+                                    
+                                    <rect x="280" y="70" width="80" height="60" rx="8" fill="rgba(255,255,255,0.03)" stroke="var(--positive)" stroke-width="2"/>
+                                    <text x="320" y="105" fill="#fff" font-size="12" text-anchor="middle" font-family="IBM Plex Mono">Block #3</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Hub: Technical & Execution -->
+            <section class="section education-hub" id="education">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag">ACADEMIC MODULES</span>
+                        <h2>Mastering Technical Infrastructure</h2>
+                        <p>Deep-dive curriculum covering charting architecture, technical indicators, risk mechanics, and market psychology.</p>
+                    </div>
+
+                    <div class="curriculum-grid">
+                        <!-- TradingView Guide -->
+                        <div class="curriculum-card glass-panel">
+                            <div class="card-badge">Module 01</div>
+                            <h3>TradingView Mastery</h3>
+                            <p>Master professional charting workspaces, custom indicators, multi-timeframe analysis syncs, and multi-asset watchlists.</p>
+                            <ul class="mini-list">
+                                <li>Custom Timeframes & Replays</li>
+                                <li>Advanced Drawing Tools & Gann Fibs</li>
+                                <li>Alert Automation & Webhooks</li>
+                            </ul>
+                        </div>
+
+                        <!-- Technical Indicators -->
+                        <div class="curriculum-card glass-panel">
+                            <div class="card-badge">Module 02</div>
+                            <h3>Technical Indicators</h3>
+                            <p>Deconstruct mathematical formulas behind trend, momentum, volatility, and volume indicators.</p>
+                            <ul class="mini-list">
+                                <li>EMA & SMA (Moving Averages)</li>
+                                <li>RSI & MACD (Momentum Oscillators)</li>
+                                <li>ATR & Bollinger Bands (Volatility)</li>
+                                <li>VWAP & Volume Profile</li>
+                            </ul>
+                        </div>
+
+                        <!-- Risk Management -->
+                        <div class="curriculum-card glass-panel">
+                            <div class="card-badge">Module 03</div>
+                            <h3>Risk & Position Sizing</h3>
+                            <p>Protect capital through strict mathematical modeling, asymmetric risk-to-reward ratios, and journal auditing.</p>
+                            <ul class="mini-list">
+                                <li>Fixed Fractional Risk Formulas</li>
+                                <li>Stop Loss & Take Profit Placement</li>
+                                <li>Expectancy & Win Rate Calculation</li>
+                            </ul>
+                        </div>
+
+                        <!-- Market Psychology -->
+                        <div class="curriculum-card glass-panel">
+                            <div class="card-badge">Module 04</div>
+                            <h3>Market Psychology</h3>
+                            <p>Conquer cognitive biases, fear of missing out (FOMO), greed, and emotional decision loops under high volatility.</p>
+                            <ul class="mini-list">
+                                <li>Discipline & Execution Consistency</li>
+                                <li>Probability Mindset Adoption</li>
+                                <li>Tilt Management & Recovery</li>
+                            </ul>
+                        </div>
+
+                        <!-- Market Sessions -->
+                        <div class="curriculum-card glass-panel">
+                            <div class="card-badge">Module 05</div>
+                            <h3>Global Market Sessions</h3>
+                            <p>Identify optimal liquidity windows across Sydney, Tokyo, London, and New York session overlaps.</p>
+                            <ul class="mini-list">
+                                <li>London-New York Overlap Spike</li>
+                                <li>Asian Range Breakout Models</li>
+                                <li>Low Liquidity Trap Identification</li>
+                            </ul>
+                        </div>
+
+                        <!-- Market Structure -->
+                        <div class="curriculum-card glass-panel">
+                            <div class="card-badge">Module 06</div>
+                            <h3>Market Structure & Flow</h3>
+                            <p>Read pure price action, break of structure (BOS), change of character (CHoCH), and institutional supply zones.</p>
+                            <ul class="mini-list">
+                                <li>Higher Highs & Lower Lows Mapping</li>
+                                <li>Order Blocks & Imbalances (FVG)</li>
+                                <li>Liquidity Pools & Sweep Detection</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Chart Simulator Section -->
+            <section class="section chart-section" id="chart-section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag">SIMULATION SUITE</span>
+                        <h2>Interactive Asset Simulator</h2>
+                        <p>Analyze simulated multi-asset price action with custom technical drawing parameters.</p>
+                    </div>
+
+                    <div class="chart-wrapper glass-panel">
+                        <div class="chart-toolbar">
+                            <div class="asset-selector-group">
+                                <button class="asset-btn active" data-asset="forex">EUR/USD (Forex)</button>
+                                <button class="asset-btn" data-asset="crypto">BTC/USD (Crypto)</button>
+                                <button class="asset-btn" data-asset="commodities">XAU/USD (Gold)</button>
+                                <button class="asset-btn" data-asset="indices">NASDAQ (Index)</button>
+                            </div>
+                            <div class="chart-indicators-toggle">
+                                <span class="indicator-tag active" data-indicator="sma">SMA 50</span>
+                                <span class="indicator-tag active" data-indicator="ema">EMA 200</span>
+                                <span class="indicator-tag" data-indicator="bollinger">Bollinger</span>
+                            </div>
+                        </div>
+
+                        <!-- Canvas for Interactive Chart -->
+                        <div class="canvas-chart-container">
+                            <canvas id="interactiveChartCanvas"></canvas>
+                        </div>
+
+                        <div class="chart-footer-info">
+                            <div class="info-metric">
+                                <span class="label">Current Simulation Price:</span>
+                                <span class="value" id="simPrice">1.08452</span>
+                            </div>
+                            <div class="info-metric">
+                                <span class="label">24H Volatility Index:</span>
+                                <span class="value positive" id="simVol">MODERATE (14.2%)</span>
+                            </div>
+                            <div class="info-metric">
+                                <span class="label">Status:</span>
+                                <span class="value accent">Live Data Simulation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Volatility Dashboard Section -->
+            <section class="section volatility-section" id="volatility">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag">REAL-TIME CLASSIFICATION</span>
+                        <h2>Market Volatility Dashboard</h2>
+                        <p>Automated categorization of instruments based on current liquidity velocity and standard deviation.</p>
+                    </div>
+
+                    <div class="volatility-grid" id="volatilityGrid">
+                        <!-- Populated dynamically via JS or structured cards -->
+                        <div class="vol-card glass-panel high">
+                            <div class="vol-header">
+                                <span class="vol-badge high">HIGH VOLATILITY</span>
+                                <span class="vol-score">ATR: 4.82</span>
+                            </div>
+                            <h4>Bitcoin (BTC/USD)</h4>
+                            <p class="vol-desc">High momentum swings driven by leveraged derivatives and global liquidity flows.</p>
+                        </div>
+                        <div class="vol-card glass-panel high">
+                            <div class="vol-header">
+                                <span class="vol-badge high">HIGH VOLATILITY</span>
+                                <span class="vol-score">ATR: 3.91</span>
+                            </div>
+                            <h4>Gold (XAU/USD)</h4>
+                            <p class="vol-desc">Safe-haven asset experiencing heavy institutional hedging and macro reaction.</p>
+                        </div>
+                        <div class="vol-card glass-panel medium">
+                            <div class="vol-header">
+                                <span class="vol-badge medium">MEDIUM VOLATILITY</span>
+                                <span class="vol-score">ATR: 1.64</span>
+                            </div>
+                            <h4>NASDAQ 100</h4>
+                            <p class="vol-desc>Technology equity index with steady intraday trend progression.</p>
+                        </div>
+                        <div class="vol-card glass-panel medium">
+                            <div class="vol-header">
+                                <span class="vol-badge medium">MEDIUM VOLATILITY</span>
+                                <span class="vol-score">ATR: 1.12</span>
+                            </div>
+                            <h4>Ethereum (ETH/USD)</h4>
+                            <p class="vol-desc">Layer-1 protocol token with solid correlation to broader crypto beta.</p>
+                        </div>
+                        <div class="vol-card glass-panel low">
+                            <div class="vol-header">
+                                <span class="vol-badge low">LOW VOLATILITY</span>
+                                <span class="vol-score">ATR: 0.45</span>
+                            </div>
+                            <h4>EUR/USD (Forex)</h4>
+                            <p class="vol-desc">Deepest liquidity pair worldwide, characterized by tight spreads and measured moves.</p>
+                        </div>
+                        <div class="vol-card glass-panel low">
+                            <div class="vol-header">
+                                <span class="vol-badge low">LOW VOLATILITY</span>
+                                <span class="vol-score">ATR: 0.52</span>
+                            </div>
+                            <h4>USD/JPY (Forex)</h4>
+                            <p class="vol-desc">Major currency pair influenced by central bank interest rate differentials.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Frequently Asked Questions -->
+            <section class="section faq-section" id="faq">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag">KNOWLEDGE BASE</span>
+                        <h2>Frequently Asked Questions</h2>
+                        <p>Clear clarification regarding EROSSARC's educational mission and operational framework.</p>
+                    </div>
+
+                    <div class="faq-list">
+                        <div class="faq-item glass-panel">
+                            <div class="faq-question">
+                                <h3>Is EROSSARC a brokerage or trading platform?</h3>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>No. EROSSARC is strictly an educational knowledge platform. We do not provide brokerage services, execution platforms, or exchanges. Users cannot create accounts, sign in, or invest capital through this website.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item glass-panel">
+                            <div class="faq-question">
+                                <h3>Who is behind EROSSARC?</h3>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>EROSSARC was founded by <strong>Jalvant Vekariya</strong> and is operated under <strong>AMCC System</strong>, focusing on elite financial education and data-driven discipline.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item glass-panel">
+                            <div class="faq-question">
+                                <h3>Can I deposit money or trade on this website?</h3>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Absolutely not. There are no account creation features, deposit portals, or live trading terminals. All charts and simulations are purely for educational knowledge demonstration.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item glass-panel">
+                            <div class="faq-question">
+                                <h3>How can I contact the EROSSARC team?</h3>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>You can reach out directly via email at <strong>erossarcofficials@gmail.com</strong> for academic inquiries and educational support.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer-section">
+                <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-col brand-col">
+                            <a href="#" class="brand-logo">
+                                <span class="logo-text">EROSSARC</span>
+                            </a>
+                            <p class="footer-tagline">Let's Get Impact Together</p>
+                            <p class="footer-meta">Founder: <strong>Jalvant Vekariya</strong></p>
+                            <p class="footer-meta">Operated By: <strong>AMCC System</strong></p>
+                            <p class="footer-meta">Email: <a href="mailto:erossarcofficials@gmail.com">erossarcofficials@gmail.com</a></p>
+                        </div>
+                        <div class="footer-col links-col">
+                            <h4>Navigation</h4>
+                            <a href="#about">About</a>
+                            <a href="#markets">Markets</a>
+                            <a href="#education">Education</a>
+                            <a href="#chart-section">Simulator</a>
+                            <a href="#volatility">Volatility</a>
+                        </div>
+                        <div class="footer-col disclaimer-col">
+                            <h4>Educational Disclaimer</h4>
+                            <p class="disclaimer-text">
+                                The information provided on this website is for educational and informational purposes only. EROSSARC does not provide investment advice, brokerage services, portfolio management, or financial recommendations. Nothing on this website should be interpreted as financial, legal, or tax advice. Trading in financial markets involves significant risk and may result in financial loss. Always conduct your own research and consult a qualified financial professional before making investment decisions. Past performance does not guarantee future results.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>Copyright © 2026 EROSSARC. All Rights Reserved.</p>
+                        <p class="designer-credit">Designed with Engineering Precision & Luxury Motion.</p>
+                    </div>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- Application Scripts -->
+    <script src="./js/utils.js"></script>
+    <script src="./js/ticker.js"></script>
+    <script src="./js/chart.js"></script>
+    <script src="./js/three-scene.js"></script>
+    <script src="./js/scroll.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>
