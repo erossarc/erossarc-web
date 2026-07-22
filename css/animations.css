@@ -1,0 +1,34 @@
+/* Animation Keyframes & Luxury Motion Classes */
+
+.text-reveal {
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Hover tilt effect helper */
+.tilt-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Glow Pulse Utilities */
+.glow-effect {
+    position: relative;
+}
+
+.glow-effect::after {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    background: linear-gradient(45deg, var(--accent), var(--positive));
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.glow-effect:hover::after {
+    opacity: 0.6;
+    filter: blur(10px);
+}
