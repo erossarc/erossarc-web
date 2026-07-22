@@ -1,0 +1,28 @@
+:root {
+    --bg-primary: #070707;
+    --bg-card: rgba(18, 18, 18, 0.7);
+    --bg-card-hover: rgba(26, 26, 26, 0.85);
+    
+    --accent: #FF6B00;
+    --accent-glow: rgba(255, 107, 0, 0.25);
+    
+    --positive: #00FF88;
+    --positive-glow: rgba(0, 255, 136, 0.2);
+    
+    --negative: #FF4D4D;
+    --negative-glow: rgba(255, 77, 77, 0.2);
+    
+    --text-primary: #FFFFFF;
+    --text-secondary: #999999;
+    --text-muted: #555555;
+    
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(255, 107, 0, 0.4);
+    
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-sans: 'Inter', sans-serif;
+    
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-fast: all 0.2s ease;
+}
