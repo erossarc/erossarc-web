@@ -1,0 +1,16 @@
+{
+  "brand": "EROSSARC",
+  "founder": "Jalvant Vekariya",
+  "operated_by": "AMCC System",
+  "tagline": "Let's Get Impact Together",
+  "email": "erossarcofficials@gmail.com",
+  "disclaimer_status": "Educational platform only. Not a broker, exchange, or investment advisor.",
+  "instruments": [
+    { "symbol": "BTC/USD", "class": "Crypto", "volatility": "High", "atr": "4.82" },
+    { "symbol": "ETH/USD", "class": "Crypto", "volatility": "Medium", "atr": "3.12" },
+    { "symbol": "XAU/USD", "class": "Commodities", "volatility": "High", "atr": "3.91" },
+    { "symbol": "NASDAQ", "class": "Indices", "volatility": "Medium", "atr": "1.64" },
+    { "symbol": "EUR/USD", "class": "Forex", "volatility": "Low", "atr": "0.45" },
+    { "symbol": "USD/JPY", "class": "Forex", "volatility": "Low", "atr": "0.52" }
+  ]
+}
