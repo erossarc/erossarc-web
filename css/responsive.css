@@ -1,0 +1,51 @@
+@media (max-width: 1024px) {
+    .content-split {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-metrics {
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+    }
+    
+    .metric-divider {
+        width: 100%;
+        height: 1px;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .market-tabs {
+        flex-direction: column;
+    }
+    
+    .tab-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
